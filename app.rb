@@ -13,3 +13,18 @@ get '/about' do
   get '/visit' do
 	erb :visit
   end  
+
+  get '/contacts' do
+	erb :contacts
+  end
+
+  post '/visit' do
+	@username = params[:username]
+	@phone = params[:phone]
+	@datetime = params[:datetime]
+	@barber = params[:barber]
+	
+	erb "You has beem enrolled, please check your data: #{@username},#{@phone}, #{@datetime},#{@barber}"
+  end  
+
+  
