@@ -1,0 +1,6 @@
+<% b = SQLite3::Database.new 'barbershop.db' %>
+<%db.execute 'select * from Clients order by id desc' do |row| %>
+    puts row[1]
+    puts '==========' 
+	<%end%>
+   

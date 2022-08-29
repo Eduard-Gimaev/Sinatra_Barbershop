@@ -70,12 +70,10 @@ post '/visit' do
 	erb "You has been enrolled, please check your data: #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
 end  
 
-def get_db
-	return SQLite3::Database.new 'barbershop.db'
-end
+
 
 get '/contacts' do
-	erb :contactss
+	erb :contacts
 end
 
 post '/contacts' do
@@ -86,12 +84,14 @@ post '/contacts' do
 end  
 
 get '/showusers' do
-	db = get_db
-	db.execute 'select * from Clients' do |row|
-		puts row
-		puts ---------
 	
+	erb :showusers
   end
   
+def get_db
+	db = SQLite3::Database.new 'barbershop.db'
+	db.results_as_hash = true
+	return db
+end
 
   
