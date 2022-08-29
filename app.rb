@@ -90,7 +90,10 @@ post '/contacts' do
 end  
 
 get '/showusers' do
-	
+
+	db = get_db
+	@results = db.execute 'select * from Clients order by id desc'
+
 	erb :showusers
   end
   
