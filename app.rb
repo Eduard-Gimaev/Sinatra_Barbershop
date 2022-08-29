@@ -4,6 +4,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def get_db
+	db = SQLite3::Database.new 'barbershop.db'
+	db.results_as_hash = true
+	return db
+end
+
 configure do 
 	get_db = SQLite3::Database.new 'barbershop.db'
 	db = get_db
@@ -87,11 +93,4 @@ get '/showusers' do
 	
 	erb :showusers
   end
-  
-def get_db
-	db = SQLite3::Database.new 'barbershop.db'
-	db.results_as_hash = true
-	return db
-end
-
   
