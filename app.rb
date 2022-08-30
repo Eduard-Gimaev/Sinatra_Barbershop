@@ -78,13 +78,24 @@ end
 
 
 
-get '/contacts' do
+get '/support' do
 	erb :contacts
 end
 
-post '/contacts' do
+post '/support' do
 	@username = params[:username]
 	@usermessage = params[:usermessage]
+
+	@error = hh.select {|key,_| params[key] == ''}.values.join(", ")
+	if @error !=''
+		return erb :contacts
+	end
+	
+	db = get_db
+	db.execute 'insert into Contacts
+	(username, usermessage)
+	values(?, ?)', 
+	[@username, @usermessage]
 	
 	erb "Your message has been accepted, we'll call you back soon..."
 end  
@@ -95,5 +106,13 @@ get '/showusers' do
 	@results = db.execute 'select * from Clients order by id desc'
 
 	erb :showusers
+  end
+
+  get '/showmessages' do
+
+	db = get_db
+	@results = db.execute 'select * from Contacts order by id desc'
+
+	erb :showmessages
   end
   
