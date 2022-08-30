@@ -31,7 +31,7 @@ configure do
 			"barbername" text(128)
 		)'
 	db.execute 'CREATE TABLE IF NOT EXISTS 
-		"Contacts" 
+		"Support" 
 		(
 			"ID" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 			"username" text(128),
@@ -79,16 +79,18 @@ end
 
 
 get '/support' do
-	erb :contacts
+	erb :support
 end
 
 post '/support' do
 	@username = params[:username]
 	@usermessage = params[:usermessage]
 
+	hh = {  :username => 'Insert your name',
+			:usermessage => 'Insert message'}
 	@error = hh.select {|key,_| params[key] == ''}.values.join(", ")
 	if @error !=''
-		return erb :contacts
+		return erb :support
 	end
 	
 	db = get_db
@@ -111,7 +113,7 @@ get '/showusers' do
   get '/showmessages' do
 
 	db = get_db
-	@results = db.execute 'select * from Contacts order by id desc'
+	@results = db.execute 'select * from Support order by id desc'
 
 	erb :showmessages
   end

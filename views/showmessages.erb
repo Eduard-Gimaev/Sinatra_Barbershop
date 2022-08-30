@@ -1,0 +1,16 @@
+<table class="table table-striped">
+<thead>
+<tr>
+<th>USERNAME</th>
+<th>USERMESSAGE</th>
+</tr>
+</thead>
+<tbody>
+<% @results.each do |row|%>
+    <tr>
+    <td><%= row['username'] %></td>
+    <td><%= row['usermessage'] %></td>
+    </tr>
+</tbody>
+<%end%>
+</table>
