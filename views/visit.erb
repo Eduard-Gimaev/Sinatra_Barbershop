@@ -19,11 +19,9 @@
   <div class="form-group">
     <label>Choose your Barber</label>
       <select name = "barber" class="form-control">
-      <option <%= @barber == 'Andrew'? 'selected' : '' %>>Andrew</option>
-      <option <%= @barber == 'Sergey'? 'selected' : '' %>>Sergey</option>
-      <option <%= @barber == 'Tony'? 'selected' : '' %>>Tony</option>
-      <option <%= @barber == 'Steave'? 'selected' : '' %>>Steave</option>
-      <option <%= @barber == 'Greg'? 'selected' : '' %>>Greg</option>
+      <% @results.each do |row|%>
+      <option><%= row['barbername'] %></option>
+      <%end%>
       </select>
   </div>
 
@@ -42,7 +40,6 @@
       <option value= "#dc2127">Bold red</option>
       <option value= "#dbadff">Purple</option>
       <option value= "#e1e1e1">Grey</option>
-      
       </select>
   </div>
 

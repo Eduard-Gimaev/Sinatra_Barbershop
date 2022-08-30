@@ -62,6 +62,8 @@ get '/about' do
 end
 
 get '/visit' do
+	db = get_db
+	@results = db.execute 'select * from Barbers'
 	erb :visit
 end  
 
@@ -89,8 +91,6 @@ post '/visit' do
 
 	erb "You has been enrolled, please check your data: #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
 end  
-
-
 
 get '/support' do
 	erb :support
