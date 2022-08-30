@@ -94,7 +94,7 @@ post '/support' do
 	end
 	
 	db = get_db
-	db.execute 'insert into Contacts
+	db.execute 'insert into Support
 	(username, usermessage)
 	values(?, ?)', 
 	[@username, @usermessage]
