@@ -19,8 +19,8 @@
   <div class="form-group">
     <label>Choose your Barber</label>
       <select name = "barber" class="form-control">
-      <% @results.each do |row|%>
-      <option><%= row['barbername'] %></option>
+      <% @results.each do |item|%>
+      <option <%= @barber == item['barbername']? 'selected': '' %>><%= item['barbername'] %></option>  
       <%end%>
       </select>
   </div>
